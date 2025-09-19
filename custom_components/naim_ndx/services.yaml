@@ -1,0 +1,32 @@
+send_command:
+  name: Send Command
+  description: Send command to Naim NDX
+  target:
+    entity:
+      integration: naim_ndx
+      domain: media_player
+  fields:
+    command:
+      name: Command
+      description: 'The Command to send to the device.'
+      required: true
+      selector:
+        select:
+          multiple: false
+          options:
+            - play
+            - pause
+            - stop
+            - next
+            - previous
+            - one
+            - two
+            - three
+            - four
+            - five
+            - six
+            - seven
+            - eight
+            - nine
+            - zero
+            - disp

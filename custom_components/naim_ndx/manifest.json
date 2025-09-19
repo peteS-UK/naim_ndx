@@ -1,0 +1,14 @@
+{
+  "domain": "naim_ndx",
+  "name": "Naim NDX",
+  "codeowners": [
+    "@peteS-UK"
+  ],
+  "config_flow": true,
+  "dependencies": [],
+  "documentation": "https://github.com/peteS-UK/naim_ndx/blob/main/README.md",
+  "iot_class": "local_push",
+  "issue_tracker": "https://github.com/peteS-UK/naim_ndx/issues",
+  "requirements": [],
+  "version": "0.1"
+}

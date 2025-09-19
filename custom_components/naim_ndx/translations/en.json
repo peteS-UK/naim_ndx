@@ -1,0 +1,17 @@
+{
+  "title": "Naim NDX",
+  "config": {
+    "error": {
+      "data": "Enter a name for your NDX",
+      "select": "You must either discover or enter details manually"
+    },
+    "step": {
+      "user": {
+        "data": {
+          "name": "Name of the Naim NDX",
+          "broadlink_entity": "Select the Broadlink remote"
+        }
+      }
+    }
+  }
+}
