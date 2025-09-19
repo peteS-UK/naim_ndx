@@ -22,37 +22,46 @@ from .const import DOMAIN, SERVICE_SEND_COMMAND, CONF_BROADLINK
 _LOGGER = logging.getLogger(__name__)
 
 COMMANDS = {
-    "play": "JgAsAB0eHB4fHDk8OR8bPRwfOD07OhwAC4UbIBsfHCA3PTkfGz0bHzk9OTwbAA0FAAAAAAAAAAAAAAAA",
-    "pause": "JgAyAAZkHSEYIhkgOTs5IB45GyE5IBogGx8bAAujGx8bIRkgOT06HRw9Gx84IBshGiIYAA0FAAAAAAAA",
-    "stop": "JgAoAB4gODw5PDofGj4aIDg+Gx84AAujGyA4PTg9OR8bPRsgOTwbHzkADQU=",
-    "next": "JgAwABwfHB4cHzg9OR8dOzkgGx8bIBsgGgALoxwgGx4cIDk7Oh4cPDkfGx8dHxsfGwANBQAAAAAAAAAA",
-    "previous": "JgAsABwgOjs5PTgfHjs4IBsfHB4dOxwAC4UdHzg8OT04Hxw6PB4bIBogGj4dAA0FAAAAAAAAAAAAAAAA",
-    "repeat": "JgAsABsfOT05PDkfGx8cPBwfGyA4PRsAC4YbHzo8OD05HxsfHDwcHxsfOT0bAA0FAAAAAAAAAAAAAAAA",
-    "disp": "JgAwAB0eHB8cHzk9Oh4dHhwfHTs5PRwfHQALdRsfHB8cHzk8Oh8cIBsbID05PRsgGwANBQAAAAAAAAAA",
-    "one": "JgAwAB4fOTw5PTkfHCAbHxwfHCAbIBw8GwALdh0eOT05PTkfGyAcHxsgHCAbIBs9GgANBQAAAAAAAAAA",
-    "two": "JgAwAB4dHB8bIDk9OR8bIBwfGyAbIBs9OQALkxwfHSAbHjk9OSAcIBogGx8cHxw8OAANBQAAAAAAAAAA",
-    "three": "JgAwAB0eOT03PzkfHCAcIBseGyEcPBwgGwALdRweOT05PTchHCAbHx0gGyAbPBweHAANBQAAAAAAAAAA",
-    "four": "JgAsAB4eNj85PDkgGyAdHhseHT03IRwAC5McHzk9Nz83IRwfHB8dHhw8OCMaAA0FAAAAAAAAAAAAAAAA",
-    "five": "JgAwAB0fHB8cHjk9NyIcIBseHCAcOzk9HAALdR0eHSAbIDVANiEcHx0eHCAcPDk8HAANBQAAAAAAAAAA",
-    "six": "JgAsABwgOD05PTkfHCAcHhwfHTscHzkAC5QbIDk8OT05IBsgGyAbHxw9HB85AA0FAAAAAAAAAAAAAAAA",
-    "seven": "JgAwABwfOT05PDogGiAbIBwgGT4cHxwfGwALdh0eOjw5PTkfHB8dHhwfHDwcHxwfHAANBQAAAAAAAAAA",
-    "eight": "JgAwAB0eHB8dHjk9OR8dHhwfHD05HxsgGwALlBwfHB8bHzo9OR8cHxsgGz05Hx0eHAANBQAAAAAAAAAA",
-    "nine": "JgAsABsgOTw5PTkfHCAbIBs7Ox8cOx0AC3YcHzk9OTw6HxsgGyAcPDkfHD0bAA0FAAAAAAAAAAAAAAAA",
-    "zero": "JgA0ABsgHB8bIDo7OSAbIBsgGyAcHxweHB8cAAuTHR4cHxwfOT05Hx0fGx8cHxwfGyAbIBwADQUAAAAA",
-    "preset": "",
-    "store": "",
-    "up": "",
-    "down": "",
-    "left": "",
-    "right": "",
-    "ok": "",
-    "exit": "",
-    "mute": "",
-    "vol+": "",
-    "vol-": "",
-    "shuffle": "",
-    "setup": "",
-    "info": "",
+    "disp": "JgAsADkgGj04Pjc+OB8cIBo8GiAcIBsAC2U3IBs+Nz06OzkgGiAbPRsfGyAbAA0FAAAAAAAAAAAAAAAA",
+    "one": "JgAwABofGyAcHzg8OD05IBogGiAbIBo9GQALaBoeHh4cHzo7Nz45HxogGyAaHxs/GgANBQAAAAAAAAAA",
+    "two": "JgAsABshOTs4PTo7OR4cIRgiGj04AAZ4CgAFARsgNzo8PTc9OSEZIBsgGj04AA0FAAAAAAAAAAAAAAAA",
+    "three": "JgAwAB0fGSIZHzo8OT04HxsgGh8aPxwgGgALZBwfGiAcHzg9OD03IRsfGyAaPRkiGgANBQAAAAAAAAAA",
+    "four": "JgAoABsgOTw5PDg+OB8cIBo9NyAbAAuDGyA3Pjg+Nj05IBogGj83IBoADQU=",
+    "five": "JgAsABsgHB4bIDc9OT43IBogGz43PhwAC2McHxsfGyA4PDk+NyAbIBo9OD0bAA0FAAAAAAAAAAAAAAAA",
+    "six": "JgAsABwfHCAaHzk8OT05HxsfGzwcIDcAC4MbHxohHB83PTg+OB8bIBs+Gh84AA0FAAAAAAAAAAAAAAAA",
+    "seven": "JgAsABogNz83Pjc9OSAdHhs7GyAbIBsAC2UbHzg+Nz45OzkfGyAZPhshGiAaAA0FAAAAAAAAAAAAAAAA",
+    "eight": "JgAwABsfGyAcHjg+Nz44Hxs9NyEbIBoAC4IcIBohGSA4PTg+NyAbPjkdHB8bAAc3BwANBQAAAAAAAAAA",
+    "nine": "JgAoABogODw6Ozs7OCAaPTofGj0cAAtlGyA3Pjg9Nz42Iho+NyAaPR0ADQU=",
+    "zero": "JgAwABwhGh8cHjw6Nz44IBogGx8bHxsgGwALgxofGyEbHjg9OD05IhkjFyAbIBkgGwANBQAAAAAAAAAA",
+    "preset": "JgAoABohNzw6PDk8OR8aPRsgGx84AAuEGiA5PDg9OD44IBk+GyAaIDUADQU=",
+    "store": "JgAWABwgGx4bITU+OD8ZIjc8OCEbPRsADQUAAA==",
+    "vol+": "JgA0AAkACCgdHzg9NyAbIRkgHB8ZPjkfGiAbIBoAC4QdHTk9Nx8bIBohGx8bPzQjGR0eHxsADQUAAAAA",
+    "vol-": "JgA4ABshGx8aITkeGh8cIBkjGD44HxsfGz4aAAtnGh8bIRkhNiEaIBwgFyMaPjcgGiEZPRwAAvoKAA0F",
+    "mute": "JgAwABsgODw6HxogGx8bHxohGzwcIDY/GgALZhsgOTs4IRogGiAbIBofHDwcHzg+GgANBQAAAAAAAAAA",
+    "ok": "JgAUADk8HCA4PTc+Nz45PBsgGx8bAA0FAAAAAA==",
+    "up": "JgAoADchGz44PTc9OTw6HhsgGx8bAAuEOB8bPDg+OT04PDsdGyAaIBoADQU=",
+    "down": "JgAoADc9HB84PTg9OD04IRsfGT4bAAtlOT0bITY+ODw5PTodGyAcPBwADQU=",
+    "left": "JgAkADggHDs5PTg+OD04PDk9GwALZjcgGzw6PDg9OD43PTk9GwANBQAAAAA=",
+    "right": "JgASADc/Gx83Pjg8OT05PBsfOQANBQAAAAAAAA==",
+    "exit": "JgAoADofGT44Pjc7Ozw5IBo+GiEZAAtmOCAbPDo8OD43PjcgGzwgHB0ADQU=",
+    "repeat": "JgAsABsgGiEaIDg9ODw5PBwgGiA4PRwAC2QbHxsgHB83PTk9Nj8bIRkgNz4cAA0FAAAAAAAAAAAAAAAA",
+    "shuffle": "JgAsABsgNz05PDk8HCAbHxogOB8bIBsAC4MbIDc+Nz05PRshGh8bHzghGSAbAA0FAAAAAAAAAAAAAAAA",
+    "setup": "JgAkADo7HCA3PTk8Ojs6OzofGgALgzk8HB84Pjc9Ojs5PDkfGwANBQAAAAA=",
+    "info": "JgAsABoiODs5PTg9OR8bPRshGSAbHxwAC2QbHzk9Ojs4PTkfHDwcHxsfGx8cAA0FAAAAAAAAAAAAAAAA",
+    "play": "JgAsABsgGyAaHzg9OT0aIBwhNj05OxwAC2UcHhweHR82Pjk8GyAbIDc+OD0bAA0FAAAAAAAAAAAAAAAA",
+    "previous": "JgAwABogGx8cHzg8NzohHzgfHB8aIBw7HAALZhogGh8cIDc+OTwaITcgGh8cIBw8GQANBQAAAAAAAAAA",
+    "next": "JgAsABweOT03Pjc+GyA3IBsgGx8aHx0AC4IbIDg9OD05PBsgOR8aIBogGiAbAA0FAAAAAAAAAAAAAAAA",
+    "stop": "JgAsABogGx8bHzs4Oj0cIBogNz4bHzkAC4MbHxsfGyA3Pjk7HCAaIDc9Gx85AA0FAAAAAAAAAAAAAAAA",
+    "rewind": "JgAoABogODw5PDo9GSEaHzkgGT84AAuCGyA4Pjg9OD0bHxsfOSAZPTkADQU=",
+    "fastforward": "JgAsABwgGh8bIDg9ODwcHxwfOD05HhwAC4IdHxogGx84PTg+Gx8bHzg9OR8cAA0FAAAAAAAAAAAAAAAA",
+    "cd": "JgAkABwgNUA3PTk8Nz84Pjg9GwALZRsgNjw6Pjk7OT04Pjg9HAANBQAAAAA=",
+    "radio": "JgAoAB0eGh8cHzk8OD04PTg9OSEZAAuDGx8cHx0eODw6PDg8OT04IBoADQU=",
+    "pc": "JgAsABwgOD04PTg9GiEbHhwfGyE2PRoAC2YcIDg+OTs4PB0eGx8bIRogOTwZAA0FAAAAAAAAAAAAAAAA",
+    "ipod": "JgAsADg9HR45PDg9OR4bIRsfGzwbHxsAC2Y4PhogOD04PTggGiAbIRo8GyEbAA0FAAAAAAAAAAAAAAAA",
+    "tv": "JgAoADggGj05PDk9OSAZIBs9OCAbAAuAOiAcPDg+Nz82IRweGT83IBwADQU=",
+    "av": "JgAoADk9HB84PTg8OSAaIBw7OD4ZAAtoNz0bIDg9OD02JBkgGz04OR4ADQU=",
+    "hdd": "JgAoADggGz04PTc+OCAdHho+Gx44AAuEOR8aPTg+Nz42IhsgGT4aIDkADQU=",
+    "aux": "JgAsABsfGSEcIDY+OD4aHzggGyAaPTkAC4IcHhwgGiA2QDVAGiA4HxshGT45AA0FAAAAAAAAAAAAAAAA",
 }
 
 SUPPORT_NDX = (
@@ -67,7 +76,7 @@ SUPPORT_NDX = (
     | MediaPlayerEntityFeature.SHUFFLE_SET
 )
 
-SOURCES = ("CD", "Radio", "PC", "iPod", "tv", "av", "hdd", "aux")
+SOURCES = ("CD", "Radio", "PC", "iPod", "TV", "AV", "HDD", "Aux")
 
 
 async def async_setup_entry(
@@ -230,7 +239,7 @@ class NDXDevice(MediaPlayerEntity):
         await self._send_broadlink_command("previous")
 
     async def async_select_source(self, source: str) -> None:
-        await self._send_broadlink_command("")
+        await self._send_broadlink_command(source.lower())
 
     async def async_set_shuffle(self, shuffle: bool) -> None:
         """Enable/disable shuffle mode."""

@@ -14,11 +14,7 @@ send_command:
         select:
           multiple: false
           options:
-            - play
-            - pause
-            - stop
-            - next
-            - previous
+            - disp
             - one
             - two
             - three
@@ -29,4 +25,32 @@ send_command:
             - eight
             - nine
             - zero
-            - disp
+            - preset
+            - store
+            - vol+
+            - vol-
+            - mute
+            - ok
+            - up
+            - down
+            - left
+            - right
+            - exit
+            - repeat
+            - shuffle
+            - setup
+            - info
+            - play
+            - previous
+            - next
+            - stop
+            - rewind
+            - fastforward
+            - cd
+            - radio
+            - pc
+            - ipod
+            - tv
+            - av
+            - hdd
+            - aux
