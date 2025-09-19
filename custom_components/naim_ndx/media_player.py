@@ -39,6 +39,20 @@ COMMANDS = {
     "eight": "JgAwAB0eHB8dHjk9OR8dHhwfHD05HxsgGwALlBwfHB8bHzo9OR8cHxsgGz05Hx0eHAANBQAAAAAAAAAA",
     "nine": "JgAsABsgOTw5PTkfHCAbIBs7Ox8cOx0AC3YcHzk9OTw6HxsgGyAcPDkfHD0bAA0FAAAAAAAAAAAAAAAA",
     "zero": "JgA0ABsgHB8bIDo7OSAbIBsgGyAcHxweHB8cAAuTHR4cHxwfOT05Hx0fGx8cHxwfGyAbIBwADQUAAAAA",
+    "preset": "",
+    "store": "",
+    "up": "",
+    "down": "",
+    "left": "",
+    "right": "",
+    "ok": "",
+    "exit": "",
+    "mute": "",
+    "vol+": "",
+    "vol-": "",
+    "shuffle": "",
+    "setup": "",
+    "info": "",
 }
 
 SUPPORT_NDX = (
@@ -49,7 +63,11 @@ SUPPORT_NDX = (
     | MediaPlayerEntityFeature.PLAY
     | MediaPlayerEntityFeature.STOP
     | MediaPlayerEntityFeature.REPEAT_SET
+    | MediaPlayerEntityFeature.SELECT_SOURCE
+    | MediaPlayerEntityFeature.SHUFFLE_SET
 )
+
+SOURCES = ("CD", "Radio", "PC", "iPod", "tv", "av", "hdd", "aux")
 
 
 async def async_setup_entry(
@@ -89,6 +107,9 @@ class NDXDevice(MediaPlayerEntity):
         self._device_class = "receiver"
         self._name = name
         self._broadlink_entity = broadlink_entity
+        self._source = ""
+        self._sources = SOURCES
+        self._shuffle = False
 
     @property
     def should_poll(self):
@@ -125,6 +146,14 @@ class NDXDevice(MediaPlayerEntity):
         )
 
     @property
+    def source_list(self):
+        return self._sources
+
+    @property
+    def source(self):
+        return self._source
+
+    @property
     def unique_id(self):
         return self._unique_id
 
@@ -147,6 +176,11 @@ class NDXDevice(MediaPlayerEntity):
     @property
     def repeat(self):
         return RepeatMode.ONE
+
+    @property
+    def shuffle(self) -> bool:
+        """Boolean if shuffle is enabled."""
+        return self._shuffle
 
     async def send_command(self, command):
         await self._send_broadlink_command(command)
@@ -194,3 +228,12 @@ class NDXDevice(MediaPlayerEntity):
     async def async_media_previous_track(self) -> None:
         """Send next track command."""
         await self._send_broadlink_command("previous")
+
+    async def async_select_source(self, source: str) -> None:
+        await self._send_broadlink_command("")
+
+    async def async_set_shuffle(self, shuffle: bool) -> None:
+        """Enable/disable shuffle mode."""
+        self._shuffle = not self._shuffle
+        await self._send_broadlink_command("shuffle")
+        await self.coordinator.async_refresh()
